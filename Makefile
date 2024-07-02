@@ -1,0 +1,1 @@
+g++ main.cpp SupportClasses.hpp map_manager.cpp Room.cpp -o Gioco -lncurses
