@@ -10,11 +10,13 @@ class Tetramino
 {
 protected:
     int RandomTetramino;
+    Tetra tetramino;
 
 public:
-    Tetramino(const Tetra TetraminiClasse[Tetra_NUM] = Tetramini, int RandomTetramino = 0);
-    void draw(WINDOW *win, Tetra tetramino, int x, int y);
+    Tetramino(const Tetra TetraminiClasse[Tetra_NUM] = Tetramini, Tetra tetramino = Tetramini[0], int RandomTetramino = 0);
+    void draw(WINDOW *win, int x, int y);
     void moveLeft();
     void moveRight();
-    void rotate(Tetra &tetramino);
+    Tetra getTetramino();
+    void rotate();
 };
