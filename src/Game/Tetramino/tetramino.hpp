@@ -14,7 +14,7 @@ protected:
 
 public:
     Tetramino(const Tetra TetraminiClasse[Tetra_NUM] = Tetramini, Tetra tetramino = Tetramini[0], int RandomTetramino = 0);
-    void draw(WINDOW *win, int x, int y);
+    void draw(WINDOW *playwin, int x, int y);
     void moveLeft();
     void moveRight();
     Tetra getTetramino();

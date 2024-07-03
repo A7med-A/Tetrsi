@@ -4,7 +4,24 @@
 
 class Board
 {
+protected:
+    // char board[Board_HEIGHT][Board_WIDTH];
+    WINDOW *playwin;
+
 public:
-    Board(int x, int y, int width, int height);
-    void draw(WINDOW *win);
+    char board[Board_HEIGHT][Board_WIDTH];
+
+    Board(WINDOW *playwin);
+
+    void draw();
+
+    void updateBoardFromWin();
+
+    void Border();
+
+    bool isOccupied(int x, int y);
+
+    void placeTetra(Tetra tetra, int x, int y);
+
+    WINDOW *getWin();
 };

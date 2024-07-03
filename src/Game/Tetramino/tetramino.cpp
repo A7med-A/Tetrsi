@@ -11,7 +11,7 @@ void Tetramino::moveLeft() {};
 
 void Tetramino::moveRight() {};
 
-void Tetramino::draw(WINDOW *win, int x, int y)
+void Tetramino::draw(WINDOW *playwin, int x, int y)
 {
     for (int i = 0; i < 4; i++)
     {
@@ -19,7 +19,7 @@ void Tetramino::draw(WINDOW *win, int x, int y)
         {
             if (this->tetramino.shape[i][j] == '#')
             {
-                mvwaddch(win, y + i, x + j, this->tetramino.shape[i][j]);
+                mvwaddch(playwin, y + i, x + j, this->tetramino.shape[i][j]);
             }
         }
     }
@@ -36,7 +36,6 @@ void Tetramino::rotate()
     {
     case 0:
         this->tetramino = TetraminiRuotati[0];
-
         break;
     case 1:
         this->tetramino = TetraminiRuotati[1];
