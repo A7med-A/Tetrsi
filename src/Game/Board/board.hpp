@@ -21,7 +21,7 @@ public:
 
     bool isOccupied(int x, int y);
 
-    void placeTetra(Tetra tetra, int x, int y);
+    void placeTetra(Tetra tetra, int x, int y); // da modificare
 
     WINDOW *getWin();
 };

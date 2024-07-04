@@ -11,8 +11,11 @@ void Tetramino::moveLeft() {};
 
 void Tetramino::moveRight() {};
 
-void Tetramino::draw(WINDOW *playwin, int x, int y)
+void Tetramino::spawnTetramino(WINDOW *playwin)
 {
+    // spawn tetramino in the middle of the board
+    int x = Board_WIDTH / 2 - 2;
+    int y = 2;
     for (int i = 0; i < 4; i++)
     {
         for (int j = 0; j < 4; j++)
@@ -22,9 +25,9 @@ void Tetramino::draw(WINDOW *playwin, int x, int y)
                 mvwaddch(playwin, y + i, x + j, this->tetramino.shape[i][j]);
             }
         }
-    }
-};
-
+    };
+    wrefresh(playwin);
+}
 Tetra Tetramino::getTetramino()
 {
     return this->tetramino;

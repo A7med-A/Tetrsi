@@ -10,6 +10,7 @@
 
 #define Tetra_NUM 3
 
+#define Time_Out 100
 // nel main andò a inizializzare tutte le window che mi servono
 
 // struttura dei tetramini
