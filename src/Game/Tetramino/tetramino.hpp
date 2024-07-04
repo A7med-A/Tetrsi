@@ -3,6 +3,7 @@
 #include "random"
 #include <iostream>
 #include "ctime"
+#include "../Board/board.hpp"
 
 #include <ncurses.h>
 
@@ -11,12 +12,17 @@ class Tetramino
 protected:
     int RandomTetramino;
     Tetra tetramino;
+    int x, y;
 
 public:
     Tetramino(const Tetra TetraminiClasse[Tetra_NUM] = Tetramini, Tetra tetramino = Tetramini[0], int RandomTetramino = 0);
     void spawnTetramino(WINDOW *playwin);
-    void moveLeft();
-    void moveRight();
+    int getX();
+    int getY();
+
     Tetra getTetramino();
-    void rotate();
+    void rotate(Board board); // TODO
+    void moveDown(Board board);
+    void moveLeft(Board board);
+    void moveRight(Board board);
 };

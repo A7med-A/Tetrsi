@@ -1,1 +1,1 @@
-g++ main.cpp SupportClasses.hpp map_manager.cpp Room.cpp -o Gioco -lncurses
+g++ main.cpp Game/Board/board.cpp Game/Tetramino/tetramino.cpp Game/constants.cpp Game/Menu/menu.cpp Game/Score/score.cpp  -o Gioco -lncurses
