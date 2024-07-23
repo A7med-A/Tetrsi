@@ -21,8 +21,6 @@ public:
 
     bool checkCollision(int xAttuale, int yAttuale, int xVoluto, int yVoluto, Tetra tetra);
 
-    bool checkRotationCollision(int xAttuale, int yAttuale, int xVoluto, int yVoluto, Tetra rotatedTetra);
-
     void placeTetra(Tetra tetra, int x, int y); // da modificare
 
     void clearTetra(Tetra tetra, int x, int y);
