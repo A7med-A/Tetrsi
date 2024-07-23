@@ -148,3 +148,65 @@ WINDOW *Board::getWin()
 {
     return this->playwin;
 }
+
+bool Board::checkLine(int line)
+{
+    for (int i = 0; i < Board_WIDTH; i++)
+    {
+        if (mvwinch(this->playwin, line, i) == ' ')
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool Board::isLineEmpty(int line)
+{
+    for (int i = 0; i < Board_WIDTH; i++)
+    {
+        if (mvwinch(this->playwin, line, i) != ' ')
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+void Board::moveAllLineDown(int clearedLineY)
+{
+    // Partendo dalla linea appena sopra quella eliminata, spostiamo tutto verso il basso
+    for (int y = clearedLineY; y > 0; y--)
+    {
+        if (isLineEmpty(y - 1))
+        {
+            break;
+        }
+        for (int x = 0; x < Board_WIDTH; x++)
+        {
+            // Ottieni il carattere dalla linea sopra
+            chtype charAbove = mvwinch(this->playwin, y - 1, x);
+            // Sposta il carattere nella linea corrente
+            mvwaddch(this->playwin, y, x, charAbove);
+            wrefresh(this->playwin);
+        }
+    }
+
+    // Pulisci la linea più in alto dopo lo spostamento
+    for (int x = 0; x < Board_WIDTH; x++)
+    {
+        mvwaddch(this->playwin, 0, x, ' ');
+    }
+
+    // Aggiorna la window per riflettere i cambiamenti
+    wrefresh(this->playwin);
+}
+
+void Board::clearLine(int line)
+{
+    for (int x = 0; x < Board_WIDTH; x++)
+    {
+        mvwaddch(this->playwin, line, x, ' ');
+    }
+    wrefresh(this->playwin);
+}

@@ -24,7 +24,7 @@ public:
     bool checkBottomCollision(Board board); // serve per il tetramino quando tocca il fondo
 
     Tetra getTetramino();
-    void rotate(Board board); // TODO
+    void rotate(Board board);
     void moveDown(Board board);
     void moveLeft(Board board);
     void moveRight(Board board);

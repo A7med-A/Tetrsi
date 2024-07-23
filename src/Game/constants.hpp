@@ -1,6 +1,6 @@
 #pragma once
 #include <ncurses.h>
-#define Board_WIDTH 100
+#define Board_WIDTH 5
 #define Board_HEIGHT 30
 
 #define Control_LEFT 'a'
@@ -11,7 +11,7 @@
 
 #define Tetra_NUM 3
 
-#define Time_Out 100
+#define Time_Out 200
 // nel main andò a inizializzare tutte le window che mi servono
 
 // struttura dei tetramini

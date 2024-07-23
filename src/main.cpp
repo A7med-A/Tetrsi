@@ -138,7 +138,7 @@ int main()
             // ciclo di gioco
             wtimeout(board.getWin(), Time_Out);
             int ch = wgetch(board.getWin());
-            while (ch != 'q')
+            while (ch != Quit)
             {
                 if (ch == ERR)
                 {
@@ -165,10 +165,15 @@ int main()
                     tetramino.moveDown(board);
                     wrefresh(playwin);
                 }
-                else if (ch == 'r')
+
+                bool checkLine = board.checkLine(Board_HEIGHT - 1);
+                if (checkLine)
                 {
-                    tetramino.rotate(board);
+                    board.clearLine(Board_HEIGHT - 1);
                     wrefresh(playwin);
+                    board.moveAllLineDown(Board_HEIGHT - 1);
+                    wrefresh(playwin);
+                    tetramino.spawnTetramino(board.getWin()); // IMP spauwnare tetramino subito dopo aver cancellato la linea
                 }
                 ch = wgetch(board.getWin());
             }
