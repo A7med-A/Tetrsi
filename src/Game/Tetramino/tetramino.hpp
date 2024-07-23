@@ -20,6 +20,8 @@ public:
     int getX();
     int getY();
 
+    bool checkBottomCollision(Board board); // serve per il tetramino quando tocca il fondo
+
     Tetra getTetramino();
     void rotate(Board board); // TODO
     void moveDown(Board board);

@@ -39,6 +39,22 @@ void Tetramino::spawnTetramino(WINDOW *playwin)
     };
     wrefresh(playwin);
 }
+
+bool Tetramino::checkBottomCollision(Board board)
+{
+    int actualX = this->x;
+    int actualY = this->y;
+
+    if (board.checkCollision(getX(), getY(), actualX, actualY + 1, this->tetramino))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+};
+
 Tetra Tetramino::getTetramino()
 {
     return this->tetramino;
@@ -59,6 +75,7 @@ void Tetramino::moveDown(Board board)
     {
         // fisso il tetramino
         board.placeTetra(this->tetramino, actualX, actualY);
+        this->spawnTetramino(board.getWin());
     }
     else
     {
@@ -79,6 +96,7 @@ void Tetramino::moveLeft(Board board)
     {
         // fisso il tetramino
         board.placeTetra(this->tetramino, actualX, actualY);
+        this->spawnTetramino(board.getWin());
     }
     else
     {
@@ -95,10 +113,12 @@ void Tetramino::moveRight(Board board)
     int actualX = this->x;
     int actualY = this->y;
 
-    if (board.checkCollision(getX(), getY(), actualX + 1, actualY, this->tetramino))
+    if (board.checkCollision(getX(), getY(), actualX + 1, actualY, this->tetramino) || this->checkBottomCollision(board))
+
     {
         // fisso il tetramino
         board.placeTetra(this->tetramino, actualX, actualY);
+        this->spawnTetramino(board.getWin());
     }
     else
     {

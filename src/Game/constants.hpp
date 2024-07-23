@@ -51,3 +51,21 @@ const Tetra TetraminiRuotati[2] = {
          {' ', ' ', ' ', ' '},
          {'#', '#', '#', '#'}},
     }};
+
+enum GameState
+{
+  MENU_MAIN,
+  MENU_PAUSE,
+  MENU_GAME,
+  GAME_OVER,
+  GAME_RUNNING,
+  GAME_PAUSE
+};
+
+enum MenuOption
+{
+  OPTION_START,
+  OPTION_OPTIONS,
+  OPTION_EXIT,
+  OPTION_BACK
+};

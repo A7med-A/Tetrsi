@@ -61,16 +61,116 @@ int main()
 
     ///////////////////////////////////////////// SCORE
 
+    // scorewin = newwin(20, 20, 2, 2);
+
+    // refresh();
+
+    // Score score(scorewin);
+    // refresh();
+
+    // score.borderwin();
+
+    // score.draw();
+
+    ////////////////////////////////////////////////////////// MENU
+
+    // menuwin = newwin(50, 50, 2, 2);
+
+    // refresh();
+
+    // Menu menu(menuwin);
+    // refresh();
+    // menu.DisplayMainMenu();
+    // int ch = getch();
+    // while (ch != 'q')
+    // {
+    //     if (ch == 's')
+    //     {
+    //         wclear(menuwin);
+    //         box(menuwin, 0, 0);
+    //         mvwprintw(menuwin, 1, 1, "GAME STARTED");
+    //         wrefresh(menuwin);
+    //     }
+    //     ch = getch();
+    // }
+
+    ////////////////////////////////////////////////////////// PROVE PRATICHE E GIOCO //////////////////////////////////////////////////////////
+
+    // le 3 fineste: playwin, scorewin, menuwin
+    // alcuni parametri che ci servono
+    int maxHeigth, maxWidth;
+    getmaxyx(stdscr, maxHeigth, maxWidth);
+
+    // inizializzazione gioco
+    playwin = newwin(Board_HEIGHT, Board_WIDTH, 10, 10);
     scorewin = newwin(20, 20, 2, 2);
-
+    menuwin = newwin(maxHeigth, maxWidth, 0, 0);
     refresh();
 
+    // inizializzazione delle classi
+    Board board(playwin);
     Score score(scorewin);
+    Menu menu(menuwin);
     refresh();
 
-    score.borderwin();
+    // visualizzo menu principale
+    menu.DisplayMainMenu();
 
-    score.draw();
+    // ciclo principale
+    int ch = getch();
+
+    while (ch != 'q')
+    {
+        if (ch == 's')
+        {
+            // inizializzo il gioco
+            wclear(menuwin);
+            box(menuwin, 0, 0);
+            mvwprintw(menuwin, 1, 1, "GAME STARTED");
+            wrefresh(menuwin);
+
+            // inizializzo il gioco
+            board.Border();
+            Tetramino tetramino;
+            tetramino.spawnTetramino(board.getWin());
+            board.updateBoardFromWin();
+
+            // ciclo di gioco
+            wtimeout(board.getWin(), Time_Out);
+            int ch = wgetch(board.getWin());
+            while (ch != 'q')
+            {
+                if (ch == ERR)
+                {
+                    tetramino.moveDown(board);
+                    wrefresh(playwin);
+                }
+                else if (ch == Control_LEFT)
+                {
+                    tetramino.moveLeft(board);
+                    wrefresh(playwin);
+                }
+                else if (ch == Control_RIGHT)
+                {
+                    tetramino.moveRight(board);
+                    wrefresh(playwin);
+                }
+                else if (ch == Rotate)
+                {
+                    tetramino.rotate(board);
+                    wrefresh(playwin);
+                }
+                else if (ch == Control_DOWN)
+                {
+                    tetramino.moveDown(board);
+                    wrefresh(playwin);
+                }
+                ch = wgetch(board.getWin());
+            }
+        }
+        ch = getch();
+    }
+
     getch();
     endwin();
     return 0;
