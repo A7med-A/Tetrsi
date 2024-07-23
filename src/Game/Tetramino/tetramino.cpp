@@ -80,7 +80,7 @@ void Tetramino::rotate(Board board)
 
     rotatedTetramino = Tetramini[numRotatedTetramino];
 
-    if (board.checkCollision(getX(), getY(), actualX, actualY, rotatedTetramino) || this->RandomTetramino == 2)
+    if (board.checkRotationCollision(actualX, actualY, this->tetramino, rotatedTetramino) || this->RandomTetramino == 2)
     {
     }
     else

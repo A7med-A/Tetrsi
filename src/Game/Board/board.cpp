@@ -76,6 +76,42 @@ bool Board::checkCollision(int xAttuale, int yAttuale, int xVoluto, int yVoluto,
     return false;
 }
 
+bool Board::checkRotationCollision(int xAttuale, int yAttuale, Tetra tetra, Tetra rotated)
+{
+    // Rimuovi temporaneamente il tetramino attuale dalla board per evitare collisioni con se stesso
+    clearTetra(tetra, xAttuale, yAttuale);
+
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            if (rotated.shape[i][j] == '#')
+            { // Supponendo che '#' indichi un blocco del tetramino
+                int boardX = xAttuale + j;
+                int boardY = yAttuale + i;
+
+                // Verifica se il tetramino ruotato è fuori dalla board orizzontalmente
+                if (boardX < 0 || boardX >= Board_WIDTH)
+                    return true;
+                // Verifica se il tetramino ruotato è fuori dalla board verticalmente
+                if (boardY < 0 || boardY >= Board_HEIGHT)
+                    return true;
+                // Verifica collisioni con altri tetramini
+                if (mvwinch(this->playwin, boardY, boardX) != ' ')
+                {
+                    // Se c'è una collisione, riposiziona il tetramino originale e ritorna true
+                    placeTetra(tetra, xAttuale, yAttuale);
+                    return true;
+                }
+            }
+        }
+    }
+
+    // Se non ci sono collisioni, riposiziona il tetramino originale e ritorna false
+    placeTetra(tetra, xAttuale, yAttuale);
+    return false;
+}
+
 void Board::placeTetra(Tetra tetra, int x, int y)
 {
     for (int i = 0; i < 4; i++)
