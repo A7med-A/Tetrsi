@@ -28,7 +28,7 @@ void Board::draw()
     wrefresh(this->playwin);
 }
 
-void Board::updateBoardFromWin()
+void Board::updateBoardFromWin() // per ora non utilizzata
 {
     for (int i = 0; i < Board_HEIGHT; i++)
     {
@@ -37,7 +37,6 @@ void Board::updateBoardFromWin()
             this->board[Board_HEIGHT - 1 - i][j] = mvwinch(this->playwin, i, j);
         }
     }
-    draw();
 }
 
 void Board::Border()
@@ -67,13 +66,40 @@ bool Board::checkCollision(int xAttuale, int yAttuale, int xVoluto, int yVoluto,
                 if (boardY < 0 || boardY >= Board_HEIGHT)
                     return true;
                 // verifica collisioni con altri tetramini
-                clearTetra(tetra, xAttuale, yAttuale);
+                clearTetra(tetra, xAttuale, yAttuale); // la differenza tra questa e la rotazione
                 if (mvwinch(this->playwin, boardY, boardX) != ' ')
                     return true;
                 placeTetra(tetra, xAttuale, yAttuale);
             }
         }
     }
+    return false;
+}
+
+bool Board::checkRotationCollision(int xAttuale, int yAttuale, int xVoluto, int yVoluto, Tetra rotatedTetra)
+{
+    // for (int i = 0; i < 4; i++)
+    // {
+    //     for (int j = 0; j < 4; j++)
+    //     {
+    //         if (rotatedTetra.shape[i][j] == '#')
+    //         {
+    //             // Coordinate effettive sulla board dopo la rotazione
+    //             int boardX = xVoluto + j;
+    //             int boardY = yVoluto + i;
+
+    //             // Controllo se il tetramino ruotato è fuori dalla board orizzontalmente
+    //             if (boardX < 0 || boardX >= Board_WIDTH)
+    //                 return true;
+    //             // Controllo se il tetramino ruotato è fuori dalla board verticalmente
+    //             if (boardY < 0 || boardY >= Board_HEIGHT)
+    //                 return true;
+    //             // Verifica collisioni con altri tetramini
+    //             if (mvwinch(this->playwin, boardY, boardX) != ' ')
+    //                 return true;
+    //         }
+    //     }
+    // }
     return false;
 }
 

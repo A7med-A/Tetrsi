@@ -9,7 +9,7 @@ protected:
     WINDOW *playwin;
 
 public:
-    char board[Board_HEIGHT][Board_WIDTH]; // per ora inutile
+    char board[Board_HEIGHT][Board_WIDTH]; // la board di solo i tetramini fissi
 
     Board(WINDOW *playwin = NULL);
 
@@ -20,6 +20,8 @@ public:
     void Border();
 
     bool checkCollision(int xAttuale, int yAttuale, int xVoluto, int yVoluto, Tetra tetra);
+
+    bool checkRotationCollision(int xAttuale, int yAttuale, int xVoluto, int yVoluto, Tetra rotatedTetra);
 
     void placeTetra(Tetra tetra, int x, int y); // da modificare
 

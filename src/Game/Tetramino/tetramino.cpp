@@ -21,7 +21,8 @@ int Tetramino::getY()
 
 void Tetramino::spawnTetramino(WINDOW *playwin)
 {
-    // spawn tetramino in the middle of the board
+    // board.updateBoardFromWin(); // aggiorno matrice con i tetramini fissi
+    //  spawn tetramino in the middle of the board
     this->RandomTetramino = rand() % Tetra_NUM;
     this->tetramino = Tetramini[this->RandomTetramino];
     this->x = Board_WIDTH / 2 - 2;
@@ -66,35 +67,28 @@ void Tetramino::rotate(Board board)
     int actualY = this->y;
 
     Tetra rotatedTetramino = this->tetramino;
-    int size = 4;
+    int numRotatedTetramino;
 
-    // Trasposizione della matrice.
-    for (int i = 0; i < size; ++i)
+    if (this->RandomTetramino == 0)
     {
-        for (int j = i; j < size; ++j)
-        {
-            std::swap(rotatedTetramino.shape[i][j], rotatedTetramino.shape[j][i]);
-        }
+        numRotatedTetramino = 1;
+    }
+    else if (this->RandomTetramino == 1)
+    {
+        numRotatedTetramino = 0;
     }
 
-    // Inversione delle righe.
-    for (int i = 0; i < size; ++i)
-    {
-        for (int j = 0, k = size - 1; j < k; ++j, --k)
-        {
-            std::swap(rotatedTetramino.shape[i][j], rotatedTetramino.shape[i][k]);
-        }
-    }
+    rotatedTetramino = Tetramini[numRotatedTetramino];
 
-    if (board.checkCollision(getX(), getY(), actualX, actualY, rotatedTetramino))
+    if (board.checkRotationCollision(getX(), getY(), actualX, actualY, rotatedTetramino) || this->RandomTetramino == 2)
     {
     }
     else
     {
         // clear the tetramino
         board.clearTetra(this->tetramino, actualX, actualY);
-
         this->tetramino = rotatedTetramino;
+        this->RandomTetramino = numRotatedTetramino;
         board.placeTetra(this->tetramino, this->x, this->y);
     }
 };
@@ -116,7 +110,6 @@ void Tetramino::moveDown(Board board)
     {
         // move the tetramino down
         board.clearTetra(this->tetramino, actualX, actualY);
-
         this->y++;
         board.placeTetra(this->tetramino, this->x, this->y);
     }
