@@ -60,8 +60,43 @@ Tetra Tetramino::getTetramino()
     return this->tetramino;
 };
 
-void Tetramino::rotate(Board board) {
+void Tetramino::rotate(Board board)
+{
+    int actualX = this->x;
+    int actualY = this->y;
 
+    Tetra rotatedTetramino = this->tetramino;
+    int size = 4;
+
+    // Trasposizione della matrice.
+    for (int i = 0; i < size; ++i)
+    {
+        for (int j = i; j < size; ++j)
+        {
+            std::swap(rotatedTetramino.shape[i][j], rotatedTetramino.shape[j][i]);
+        }
+    }
+
+    // Inversione delle righe.
+    for (int i = 0; i < size; ++i)
+    {
+        for (int j = 0, k = size - 1; j < k; ++j, --k)
+        {
+            std::swap(rotatedTetramino.shape[i][j], rotatedTetramino.shape[i][k]);
+        }
+    }
+
+    if (board.checkCollision(getX(), getY(), actualX, actualY, rotatedTetramino))
+    {
+    }
+    else
+    {
+        // clear the tetramino
+        board.clearTetra(this->tetramino, actualX, actualY);
+
+        this->tetramino = rotatedTetramino;
+        board.placeTetra(this->tetramino, this->x, this->y);
+    }
 };
 
 void Tetramino::moveDown(Board board)
@@ -75,7 +110,7 @@ void Tetramino::moveDown(Board board)
     {
         // fisso il tetramino
         board.placeTetra(this->tetramino, actualX, actualY);
-        this->spawnTetramino(board.getWin());
+        this->spawnTetramino(board.getWin()); // lo spawn si fa solo qui
     }
     else
     {
@@ -96,7 +131,6 @@ void Tetramino::moveLeft(Board board)
     {
         // fisso il tetramino
         board.placeTetra(this->tetramino, actualX, actualY);
-        this->spawnTetramino(board.getWin());
     }
     else
     {
@@ -113,12 +147,11 @@ void Tetramino::moveRight(Board board)
     int actualX = this->x;
     int actualY = this->y;
 
-    if (board.checkCollision(getX(), getY(), actualX + 1, actualY, this->tetramino) || this->checkBottomCollision(board))
+    if (board.checkCollision(getX(), getY(), actualX + 1, actualY, this->tetramino))
 
     {
         // fisso il tetramino
         board.placeTetra(this->tetramino, actualX, actualY);
-        this->spawnTetramino(board.getWin());
     }
     else
     {

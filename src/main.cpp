@@ -165,6 +165,11 @@ int main()
                     tetramino.moveDown(board);
                     wrefresh(playwin);
                 }
+                else if (ch == 'r')
+                {
+                    tetramino.rotate(board);
+                    wrefresh(playwin);
+                }
                 ch = wgetch(board.getWin());
             }
         }

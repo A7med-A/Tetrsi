@@ -13,6 +13,7 @@ protected:
     int RandomTetramino;
     Tetra tetramino;
     int x, y;
+    Tetra RotatdTetramino;
 
 public:
     Tetramino(const Tetra TetraminiClasse[Tetra_NUM] = Tetramini, Tetra tetramino = Tetramini[0], int RandomTetramino = 0);
