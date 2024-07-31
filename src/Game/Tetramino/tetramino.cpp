@@ -19,9 +19,10 @@ int Tetramino::getY()
     return this->y;
 };
 
-void Tetramino::spawnTetramino(WINDOW *playwin)
+void Tetramino::spawnTetramino(Board board)
 {
-    // board.updateBoardFromWin(); // aggiorno matrice con i tetramini fissi
+    // aggiorno matrice con i tetramini fissi--> nell moveDown
+    // board.updateFixedBoardFromWin();             non funziona
     //  spawn tetramino in the middle of the board
     this->RandomTetramino = rand() % Tetra_NUM;
     this->tetramino = Tetramini[this->RandomTetramino];
@@ -34,11 +35,11 @@ void Tetramino::spawnTetramino(WINDOW *playwin)
         {
             if (this->tetramino.shape[i][j] == '#')
             {
-                mvwaddch(playwin, this->y + i, this->x + j, this->tetramino.shape[i][j]);
+                mvwaddch(board.getWin(), this->y + i, this->x + j, this->tetramino.shape[i][j]);
             }
         }
     };
-    wrefresh(playwin);
+    wrefresh(board.getWin());
 }
 
 bool Tetramino::checkBottomCollision(Board board)
@@ -104,7 +105,10 @@ void Tetramino::moveDown(Board board)
     {
         // fisso il tetramino
         board.placeTetra(this->tetramino, actualX, actualY);
-        this->spawnTetramino(board.getWin()); // lo spawn si fa solo qui
+        wrefresh(board.getWin());
+
+        // board.updateFixedBoardFromWin(); // aggiorno la board solo i  tetramini fissi nn funziona
+        // this->spawnTetramino(board); // lo spawn si fa solo qui
     }
     else
     {

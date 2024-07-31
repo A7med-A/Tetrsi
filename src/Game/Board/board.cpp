@@ -9,32 +9,33 @@ Board::Board(WINDOW *playwin)
     {
         for (int j = 0; j < Board_WIDTH; j++)
         {
-            this->board[i][j] = ' ';
+            this->FixedBoard[i][j] = ' ';
         }
     }
     refresh();
 }
 
-void Board::draw()
+void Board::draw(WINDOW *test)
 {
 
     for (int i = 0; i < Board_HEIGHT; i++)
     {
         for (int j = 0; j < Board_WIDTH; j++)
         {
-            mvwaddch(this->playwin, i, j, this->board[Board_HEIGHT - 1 - i][j]);
+            mvwaddch(test, i, j, this->FixedBoard[Board_HEIGHT - 1 - i][j]);
         }
     }
-    wrefresh(this->playwin);
+    wrefresh(test);
 }
 
-void Board::updateBoardFromWin() // per ora non utilizzata
+void Board::updateFixedBoardFromWin() // è chiamata quando il tetramino tocca il fondo
 {
+    wrefresh(this->playwin);
     for (int i = 0; i < Board_HEIGHT; i++)
     {
         for (int j = 0; j < Board_WIDTH; j++)
         {
-            this->board[Board_HEIGHT - 1 - i][j] = mvwinch(this->playwin, i, j);
+            this->FixedBoard[Board_HEIGHT - 1 - i][j] = mvwinch(this->playwin, i, j);
         }
     }
 }
@@ -147,4 +148,33 @@ void Board::clearTetra(Tetra tetra, int x, int y)
 WINDOW *Board::getWin()
 {
     return this->playwin;
+}
+
+bool Board::checkGameOver()
+{
+    for (int i = 0; i < Board_WIDTH; i++)
+    {
+        if (this->FixedBoard[Board_HEIGHT - 7][i] != ' ') // devo scegliere un qule riga bloccare il gioco
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+// logica delle linee cancellate
+bool Board::isLineComplete(int y)
+{
+    for (int i = 0; i < Board_WIDTH; i++)
+    {
+        if (this->FixedBoard[y][i] == ' ')
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+void Board::removeLine(int y)
+{
 }

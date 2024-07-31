@@ -9,13 +9,13 @@ protected:
     WINDOW *playwin;
 
 public:
-    char board[Board_HEIGHT][Board_WIDTH]; // la board di solo i tetramini fissi
+    char FixedBoard[Board_HEIGHT][Board_WIDTH]; // la board di solo i tetramini fissi
 
     Board(WINDOW *playwin = NULL);
 
-    void draw();
+    void draw(WINDOW *test = NULL);
 
-    void updateBoardFromWin();
+    void updateFixedBoardFromWin();
 
     void Border();
 
@@ -29,5 +29,9 @@ public:
 
     WINDOW *getWin();
 
-    // lines functions
+    bool checkGameOver();
+
+    bool isLineComplete(int l);
+
+    void removeLine(int l);
 };

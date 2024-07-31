@@ -103,6 +103,7 @@ int main()
 
     // inizializzazione gioco
     playwin = newwin(Board_HEIGHT, Board_WIDTH, 10, 10);
+    WINDOW *test = newwin(Board_HEIGHT, Board_WIDTH, 10, 20);
     scorewin = newwin(20, 20, 2, 2);
     menuwin = newwin(maxHeigth, maxWidth, 0, 0);
     refresh();
@@ -129,23 +130,48 @@ int main()
             mvwprintw(menuwin, 1, 1, "GAME STARTED");
             wrefresh(menuwin);
 
+            // test
+            WINDOW *testBorder = newwin(Board_HEIGHT + 2, Board_WIDTH + 2, test->_begy - 1, test->_begx - 1);
+            refresh();
+            box(testBorder, 0, 0);
+            wrefresh(testBorder);
+
             // inizializzo il gioco
             board.Border();
             Tetramino tetramino;
-            tetramino.spawnTetramino(board.getWin());
-            board.updateBoardFromWin();
+            tetramino.spawnTetramino(board);
 
             // ciclo di gioco
             wtimeout(board.getWin(), Time_Out);
             int ch = wgetch(board.getWin());
-            while (ch != Quit)
+            bool gameOver = false;
+            bool CanSpawn = false;
+            while (ch != Quit && !gameOver)
             {
                 if (ch == ERR)
                 {
+                    gameOver = board.checkGameOver();
+                    if (gameOver)
+                    {
+
+                        std::cout << "GAME OVER" << std::endl; // il gameover come logica funziona manca decidere in quale riga bloccare il gioco
+                    }
+                    if (CanSpawn)
+                    {
+                        board.updateFixedBoardFromWin();
+                        tetramino.spawnTetramino(board);
+                        CanSpawn = false;
+                        wrefresh(playwin);
+                    }
+                    if (tetramino.checkBottomCollision(board))
+                    {
+
+                        CanSpawn = true;
+                    }
                     tetramino.moveDown(board);
                     wrefresh(playwin);
                 }
-                if (ch == Control_LEFT)
+                else if (ch == Control_LEFT)
                 {
                     tetramino.moveLeft(board);
                     wrefresh(playwin);
@@ -164,6 +190,12 @@ int main()
                 {
                     tetramino.moveDown(board);
                     wrefresh(playwin);
+                }
+                else if (ch == 'f')
+                {
+
+                    board.draw(test);
+                    wrefresh(test);
                 }
 
                 ch = wgetch(board.getWin());

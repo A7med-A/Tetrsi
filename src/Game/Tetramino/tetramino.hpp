@@ -17,7 +17,7 @@ protected:
 
 public:
     Tetramino(const Tetra TetraminiClasse[Tetra_NUM] = Tetramini, Tetra tetramino = Tetramini[0], int RandomTetramino = 0);
-    void spawnTetramino(WINDOW *playwin);
+    void spawnTetramino(Board board);
     int getX();
     int getY();
 
