@@ -30,11 +30,4 @@ public:
     WINDOW *getWin();
 
     // lines functions
-    bool checkLine(int line);
-
-    bool isLineEmpty(int line);
-
-    void moveAllLineDown(int clearedLineY);
-
-    void clearLine(int line);
 };

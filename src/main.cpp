@@ -145,7 +145,7 @@ int main()
                     tetramino.moveDown(board);
                     wrefresh(playwin);
                 }
-                else if (ch == Control_LEFT)
+                if (ch == Control_LEFT)
                 {
                     tetramino.moveLeft(board);
                     wrefresh(playwin);
@@ -166,15 +166,6 @@ int main()
                     wrefresh(playwin);
                 }
 
-                bool checkLine = board.checkLine(Board_HEIGHT - 1);
-                if (checkLine)
-                {
-                    board.clearLine(Board_HEIGHT - 1);
-                    wrefresh(playwin);
-                    board.moveAllLineDown(Board_HEIGHT - 1);
-                    wrefresh(playwin);
-                    tetramino.spawnTetramino(board.getWin()); // IMP spauwnare tetramino subito dopo aver cancellato la linea
-                }
                 ch = wgetch(board.getWin());
             }
         }
