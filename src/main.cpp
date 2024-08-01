@@ -150,10 +150,13 @@ int main()
             {
                 if (ch == ERR)
                 {
+                    // clear lines
+                    int lines = board.clearLines();
+
+                    //  Game over
                     gameOver = board.checkGameOver();
                     if (gameOver)
                     {
-
                         std::cout << "GAME OVER" << std::endl; // il gameover come logica funziona manca decidere in quale riga bloccare il gioco
                     }
                     if (CanSpawn)
@@ -165,7 +168,6 @@ int main()
                     }
                     if (tetramino.checkBottomCollision(board))
                     {
-
                         CanSpawn = true;
                     }
                     tetramino.moveDown(board);
@@ -199,7 +201,7 @@ int main()
                 }
                 else if (ch == 'c')
                 {
-                    board.removeLine(Board_HEIGHT - 1);
+                    board.removeLine(1);
                     wrefresh(test);
                 }
 

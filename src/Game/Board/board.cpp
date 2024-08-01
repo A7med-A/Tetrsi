@@ -179,22 +179,19 @@ bool Board::isLineComplete(int y)
     return true;
 }
 
-void Board::removeLine(int y)
+// funziona correttamente
+void Board::removeLine(int y) // y= 0 vuole dire la riga più in basso
 {
-    for (int ty = y; ty > 0; ty--) // ty >0  devo decidere a quale riga bloccare la cancellazione(limite del gioco o gameover)
+    for (int ty = y; ty < Board_HEIGHT - 1; ty++) // ty < BoardHi -1  devo decidere a quale riga bloccare la cancellazione(limite del gioco o gameover)
     {
         for (int tx = 0; tx < Board_WIDTH; tx++)
         {
-            this->FixedBoard[ty][tx] = this->FixedBoard[ty - 1][tx];
+            this->FixedBoard[ty][tx] = this->FixedBoard[ty + 1][tx];
         }
     }
-    // Pulisci la prima riga
-    // for (int tx = 0; tx < Board_WIDTH; tx++) // non servità più avanti
-    // {
-    //     this->FixedBoard[0][tx] = ' ';
-    // }
 }
 
+// funziona correttamente :)
 int Board::clearLines()
 {
     int linesCleared = 0;
