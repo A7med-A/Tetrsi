@@ -34,4 +34,6 @@ public:
     bool isLineComplete(int l);
 
     void removeLine(int l);
+
+    int clearLines();
 };

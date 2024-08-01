@@ -197,6 +197,11 @@ int main()
                     board.draw(test);
                     wrefresh(test);
                 }
+                else if (ch == 'c')
+                {
+                    board.removeLine(Board_HEIGHT - 1);
+                    wrefresh(test);
+                }
 
                 ch = wgetch(board.getWin());
             }

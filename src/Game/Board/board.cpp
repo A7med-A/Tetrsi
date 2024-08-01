@@ -163,6 +163,10 @@ bool Board::checkGameOver()
 }
 
 // logica delle linee cancellate
+
+// NOTA IMP:: A[x][y]  x = riga y = colonna
+// x=0 vuole dire la riga più in alto
+// y=0 vuole dire la colonna più a sinistra
 bool Board::isLineComplete(int y)
 {
     for (int i = 0; i < Board_WIDTH; i++)
@@ -177,4 +181,30 @@ bool Board::isLineComplete(int y)
 
 void Board::removeLine(int y)
 {
+    for (int ty = y; ty > 0; ty--) // ty >0  devo decidere a quale riga bloccare la cancellazione(limite del gioco o gameover)
+    {
+        for (int tx = 0; tx < Board_WIDTH; tx++)
+        {
+            this->FixedBoard[ty][tx] = this->FixedBoard[ty - 1][tx];
+        }
+    }
+    // Pulisci la prima riga
+    // for (int tx = 0; tx < Board_WIDTH; tx++) // non servità più avanti
+    // {
+    //     this->FixedBoard[0][tx] = ' ';
+    // }
+}
+
+int Board::clearLines()
+{
+    int linesCleared = 0;
+    for (int i = 0; i < Board_HEIGHT; i++)
+    {
+        if (isLineComplete(i))
+        {
+            removeLine(i);
+            linesCleared++;
+        }
+    }
+    return linesCleared;
 }
