@@ -24,10 +24,25 @@ void Score::draw()
     wrefresh(this->scorewin);
 }
 
-// void Score::updateScore(int lines)
-// {
-//     this->score += lines * 10;
-// }
+void Score::updateScore(int deletedLines) // dopo deve aggiustare in base al livello scelto
+{
+    if (deletedLines == 1)
+    {
+        this->score += 10;
+    }
+    else if (deletedLines == 2)
+    {
+        this->score += 30;
+    }
+    else if (deletedLines == 3)
+    {
+        this->score += 45;
+    }
+    else if (deletedLines == 4)
+    {
+        this->score += 60;
+    }
+}
 
 WINDOW *Score::getWin()
 {

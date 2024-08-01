@@ -16,7 +16,7 @@ public:
     Score(WINDOW *scorewin = NULL);
     void borderwin();
     void draw();
-    // void updateScore(int lines);
+    void updateScore(int deletedLines);
     // void updateLevel();
     // void updateLines(int lines);
     // int getScore();

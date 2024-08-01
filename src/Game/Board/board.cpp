@@ -195,7 +195,7 @@ void Board::removeLine(int y) // y= 0 vuole dire la riga più in basso
 int Board::clearLines()
 {
     int linesCleared = 0;
-    for (int i = 0; i < Board_HEIGHT; i++)
+    for (int i = 0; i < Board_HEIGHT - 1; i++)
     {
         if (isLineComplete(i))
         {

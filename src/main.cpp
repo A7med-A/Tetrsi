@@ -18,82 +18,6 @@ int main()
 
     box(stdscr, 0, 0);
     refresh();
-
-    /*
-    playwin = newwin(Board_HEIGHT, Board_WIDTH, 10, 10);
-    refresh();
-    Board board(playwin);
-    refresh();
-    board.Border();
-
-    ////////////////////////////////////////////////////////// Test che board funzioni bene con la window
-    // mvwaddch(playwin, Board_HEIGHT - 1, 0, 'A');
-    // wrefresh(playwin);
-    // board.updateBoardFromWin();
-    // board.board[5][5] = 'B';
-    // board.draw();
-    //////////////////////////////////////////////////////////
-
-    Tetramino tetramino;
-    tetramino.spawnTetramino(board.getWin());
-    board.updateBoardFromWin();
-
-    // mvwaddch(playwin, 3, 1, '#');
-    wrefresh(playwin);
-
-    // ciclo gioco
-    // wtimeout(board.getWin(), 1000);
-    // int ch;
-    // while (true)
-    // {
-    //     ch = wgetch(board.getWin());
-    //     if (ch == ERR)
-    //     {
-    //         tetramino.rotate(board);
-    //         wrefresh(playwin);
-    //     }
-    //     else
-    //         break;
-    // }
-
-    // la funzione wtimeout() permette di aggioranre la finestra ogni tot millisecondi
-*/
-
-    ///////////////////////////////////////////// SCORE
-
-    // scorewin = newwin(20, 20, 2, 2);
-
-    // refresh();
-
-    // Score score(scorewin);
-    // refresh();
-
-    // score.borderwin();
-
-    // score.draw();
-
-    ////////////////////////////////////////////////////////// MENU
-
-    // menuwin = newwin(50, 50, 2, 2);
-
-    // refresh();
-
-    // Menu menu(menuwin);
-    // refresh();
-    // menu.DisplayMainMenu();
-    // int ch = getch();
-    // while (ch != 'q')
-    // {
-    //     if (ch == 's')
-    //     {
-    //         wclear(menuwin);
-    //         box(menuwin, 0, 0);
-    //         mvwprintw(menuwin, 1, 1, "GAME STARTED");
-    //         wrefresh(menuwin);
-    //     }
-    //     ch = getch();
-    // }
-
     ////////////////////////////////////////////////////////// PROVE PRATICHE E GIOCO //////////////////////////////////////////////////////////
 
     // le 3 fineste: playwin, scorewin, menuwin
@@ -104,7 +28,7 @@ int main()
     // inizializzazione gioco
     playwin = newwin(Board_HEIGHT, Board_WIDTH, 10, 10);
     WINDOW *test = newwin(Board_HEIGHT, Board_WIDTH, 10, 20);
-    scorewin = newwin(20, 20, 2, 2);
+    scorewin = newwin(20, 20, 2, 60);
     menuwin = newwin(maxHeigth, maxWidth, 0, 0);
     refresh();
 
@@ -130,6 +54,11 @@ int main()
             mvwprintw(menuwin, 1, 1, "GAME STARTED");
             wrefresh(menuwin);
 
+            // inizializzo lo score
+            score.borderwin();
+            score.draw();
+            wrefresh(scorewin);
+
             // test
             WINDOW *testBorder = newwin(Board_HEIGHT + 2, Board_WIDTH + 2, test->_begy - 1, test->_begx - 1);
             refresh();
@@ -146,12 +75,19 @@ int main()
             int ch = wgetch(board.getWin());
             bool gameOver = false;
             bool CanSpawn = false;
+            int lines = 0;
             while (ch != Quit && !gameOver)
             {
                 if (ch == ERR)
                 {
                     // clear lines
-                    int lines = board.clearLines();
+                    lines = board.clearLines();
+
+                    // update score                 funziona correttamente ma devo avere solo una finestra di gioco (playwin) ed eliminare la finestra test
+                    score.updateScore(lines);
+                    score.draw();
+                    wrefresh(scorewin);
+                    lines = 0;
 
                     //  Game over
                     gameOver = board.checkGameOver();
@@ -195,14 +131,14 @@ int main()
                 }
                 else if (ch == 'f')
                 {
+                    // test
 
                     board.draw(test);
                     wrefresh(test);
                 }
                 else if (ch == 'c')
                 {
-                    board.removeLine(1);
-                    wrefresh(test);
+                    // test
                 }
 
                 ch = wgetch(board.getWin());
