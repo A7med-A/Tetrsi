@@ -78,16 +78,18 @@ int main()
             int lines = 0;
             while (ch != Quit && !gameOver)
             {
-                if (ch == ERR)
+                // clear lines
+                lines = board.clearLines();
+                if (lines > 0)
                 {
-                    // clear lines
-                    lines = board.clearLines();
-
-                    // update score                 funziona correttamente ma devo avere solo una finestra di gioco (playwin) ed eliminare la finestra test
+                    std::cout << "lines: " << lines << std::endl;
+                    // update score
                     score.updateScore(lines);
                     score.draw();
                     wrefresh(scorewin);
-                    lines = 0;
+                }
+                if (ch == ERR)
+                {
 
                     //  Game over
                     gameOver = board.checkGameOver();

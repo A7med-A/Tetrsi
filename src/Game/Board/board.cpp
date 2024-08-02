@@ -191,7 +191,7 @@ void Board::removeLine(int y) // y= 0 vuole dire la riga più in basso
     }
 }
 
-// funziona correttamente :)
+// funziona correttamente :)  ma non restituisce il numero corretto di linee cancellate
 int Board::clearLines()
 {
     int linesCleared = 0;
@@ -201,6 +201,8 @@ int Board::clearLines()
         {
             removeLine(i);
             linesCleared++;
+            // Problema risolto con questo decremento
+            i--; // dopo aver cancellato una riga devo ricontrollare la riga cancellata (perchè le righe si spostano)
         }
     }
     return linesCleared;
