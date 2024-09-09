@@ -2,7 +2,7 @@ mettere in ordine i menu di gioco
 
 fare la rotazione oraria e antioraria
 
-lo score deve essere in base al livello scelto
+Fatto: lo score deve essere in base al livello scelto
 
 IMP per ora ho due fineste una pe la playwin ed una per la Fixedwin dopo devo unirli insieme in un unica board
 

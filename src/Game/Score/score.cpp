@@ -28,23 +28,33 @@ void Score::updateScore(int deletedLines) // dopo deve aggiustare in base al liv
 {
     if (deletedLines == 1)
     {
-        this->score += 10;
+        this->score += (10 * this->level);
     }
     else if (deletedLines == 2)
     {
-        this->score += 30;
+        this->score += (30 * this->level);
     }
     else if (deletedLines == 3)
     {
-        this->score += 45;
+        this->score += (45 * this->level);
     }
     else if (deletedLines == 4)
     {
-        this->score += 60;
+        this->score += (60 * this->level);
     }
+}
+
+void Score::updateLevel(int selectLevel)
+{
+    this->level = selectLevel;
 }
 
 WINDOW *Score::getWin()
 {
     return this->scorewin;
+}
+
+int Score::getScore()
+{
+    return this->score;
 }

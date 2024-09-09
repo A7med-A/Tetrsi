@@ -48,6 +48,13 @@ int main()
     {
         if (ch == 's')
         {
+            // chiedere livello
+            wclear(menuwin);
+            mvwprintw(menuwin, 1, 1, "Select Level: ");
+            wrefresh(menuwin);
+            int level = getch() - '0';
+            score.updateLevel(level);
+
             // inizializzo il gioco
             wclear(menuwin);
             box(menuwin, 0, 0);

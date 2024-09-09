@@ -17,10 +17,10 @@ public:
     void borderwin();
     void draw();
     void updateScore(int deletedLines);
-    // void updateLevel();
+    void updateLevel(int selectLevel);
     // void updateLines(int lines);
-    // int getScore();
     // int getLevel();
     // int getLines();
     WINDOW *getWin();
+    int getScore();
 };
