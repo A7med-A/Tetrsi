@@ -50,9 +50,28 @@ int main()
         {
             // chiedere livello
             wclear(menuwin);
-            mvwprintw(menuwin, 1, 1, "Select Level: ");
+            mvwprintw(menuwin, 1, 1, "Select Level: from 1 to 5");
             wrefresh(menuwin);
             int level = getch() - '0';
+            int Time_Out_Input;
+            switch (level) // scelta tempo in base al livello
+            {
+            case 1:
+                Time_Out_Input = 200;
+                break;
+            case 2:
+                Time_Out_Input = 150;
+                break;
+            case 3:
+                Time_Out_Input = 100;
+                break;
+            case 4:
+                Time_Out_Input = 50;
+                break;
+            case 5:
+                Time_Out_Input = 25;
+                break;
+            }
             score.updateLevel(level);
 
             // inizializzo il gioco
@@ -78,7 +97,7 @@ int main()
             tetramino.spawnTetramino(board);
 
             // ciclo di gioco
-            wtimeout(board.getWin(), Time_Out);
+            wtimeout(board.getWin(), Time_Out_Input);
             int ch = wgetch(board.getWin());
             bool gameOver = false;
             bool CanSpawn = false;
