@@ -22,7 +22,6 @@ void Score::draw()
     mvwprintw(this->scorewin, 2, 1, "Score: %d", this->score);
     mvwprintw(this->scorewin, 3, 1, "Level: %d", this->level);
     mvwprintw(this->scorewin, 4, 1, "Lines: %d", this->lines);
-
     wrefresh(this->scorewin);
 }
 
@@ -44,11 +43,6 @@ void Score::updateScore(int deletedLines) // dopo deve aggiustare in base al liv
     {
         this->score += (60 * this->level);
     }
-}
-
-void Score::updateLevel(int selectLevel)
-{
-    this->level = selectLevel;
 }
 
 void Score::sortScoreTable() // bubble sort
@@ -123,6 +117,42 @@ void Score::updateScoreTable()
     {
         this->saveScoreInFile();
     }
+}
+
+void Score::askLevel()
+{
+
+    WINDOW *inputwin = newwin(3, 40, 10, 10);
+    box(inputwin, 0, 0);
+    mvwprintw(inputwin, 1, 1, "Select Level: from 1 to 5");
+    wrefresh(inputwin);
+    this->level = getch() - '0';
+    wrefresh(inputwin);
+    delwin(inputwin);
+}
+
+int Score::timeOutBasedOnLevel()
+{
+    int Time_Out_Input;
+    switch (this->level) // scelta tempo in base al livello
+    {
+    case 1:
+        Time_Out_Input = 200;
+        break;
+    case 2:
+        Time_Out_Input = 150;
+        break;
+    case 3:
+        Time_Out_Input = 100;
+        break;
+    case 4:
+        Time_Out_Input = 50;
+        break;
+    case 5:
+        Time_Out_Input = 25;
+        break;
+    }
+    return Time_Out_Input;
 }
 
 void Score::askName()

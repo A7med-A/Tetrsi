@@ -26,13 +26,14 @@ public:
     void draw();
     //
     void updateScore(int deletedLines);
-    void updateLevel(int selectLevel);
     //
     void sortScoreTable();
     void readScoreFromFileAndSaveInScoreTable(const std::string &filename);
     void saveScoreInFile();
     void updateScoreTable();
     //
+    void askLevel();
+    int timeOutBasedOnLevel();
     void askName();
 
     WINDOW *getWin();

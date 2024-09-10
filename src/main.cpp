@@ -52,29 +52,10 @@ int main()
         {
             // chiedere livello
             wclear(menuwin);
-            mvwprintw(menuwin, 1, 1, "Select Level: from 1 to 5");
             wrefresh(menuwin);
-            int level = getch() - '0';
-            int Time_Out_Input;
-            switch (level) // scelta tempo in base al livello
-            {
-            case 1:
-                Time_Out_Input = 200;
-                break;
-            case 2:
-                Time_Out_Input = 150;
-                break;
-            case 3:
-                Time_Out_Input = 100;
-                break;
-            case 4:
-                Time_Out_Input = 50;
-                break;
-            case 5:
-                Time_Out_Input = 25;
-                break;
-            }
-            score.updateLevel(level);
+            score.askLevel();
+            int Time_Out_Input = score.timeOutBasedOnLevel();
+
             // chiedi nome
             score.askName();
 
@@ -184,8 +165,6 @@ int main()
             }
         }
         // test
-        char playerName[20];
-        strcpy(playerName, "AAAAAAAAA");
         score.updateScoreTable();
         ch = getch();
     }

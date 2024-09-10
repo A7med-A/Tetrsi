@@ -16,3 +16,5 @@ Fatto: salvare lo score e mettere il top score in un file
 e renderlo accessibile dal menu principale
 
 Fatto: fare scegliere al giocatore un nome per il salvataggio
+
+Fatto: chiedere nome e livello come input e integrare le due funzioni dentro delle classi non nel main
