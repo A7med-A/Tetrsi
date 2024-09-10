@@ -1,5 +1,6 @@
 #include <ncurses.h>
 #include <iostream>
+#include <cstring>
 
 #include "Game/Board/board.hpp"
 #include "Game/Tetramino/tetramino.hpp"
@@ -19,7 +20,6 @@ int main()
     box(stdscr, 0, 0);
     refresh();
     ////////////////////////////////////////////////////////// PROVE PRATICHE E GIOCO //////////////////////////////////////////////////////////
-
     // le 3 fineste: playwin, scorewin, menuwin
     // alcuni parametri che ci servono
     int maxHeigth, maxWidth;
@@ -84,6 +84,12 @@ int main()
             score.borderwin();
             score.draw();
             wrefresh(scorewin);
+            score.readScoreFromFileAndSaveInScoreTable("scoreTable.txt"); // il file deve essere qui
+            // test
+            // for (int i = 0; i < 10; i++)
+            //{
+            //    std::cout << score.scoreTableArray[i].name << " " << score.scoreTableArray[i].score << std::endl;
+            //}
 
             // test
             WINDOW *testBorder = newwin(Board_HEIGHT + 2, Board_WIDTH + 2, test->_begy - 1, test->_begx - 1);
@@ -172,6 +178,10 @@ int main()
                 ch = wgetch(board.getWin());
             }
         }
+        // test
+        char playerName[20];
+        strcpy(playerName, "AAAAAAAAA");
+        score.updateScoreTable(playerName);
         ch = getch();
     }
 

@@ -1,5 +1,8 @@
 #pragma once
 #include <ncurses.h>
+#include <fstream>
+#include <cstring>
+#include <iostream>
 #include "../constants.hpp"
 #include "../Board/board.hpp"
 #include "../Tetramino/tetramino.hpp"
@@ -7,20 +10,28 @@
 class Score
 {
 public:
+    // riguardo lo score
     int score;
     int level;
     int lines;
     WINDOW *scorewin;
+    // riguardo il salvataggio e il file
+    // array di punteggi
+    scoreTable scoreTableArray[10];
 
 public:
     Score(WINDOW *scorewin = NULL);
     void borderwin();
     void draw();
+    //
     void updateScore(int deletedLines);
     void updateLevel(int selectLevel);
-    // void updateLines(int lines);
-    // int getLevel();
-    // int getLines();
+    //
+    void sortScoreTable();
+    void readScoreFromFileAndSaveInScoreTable(const std::string &filename);
+    void saveScoreInFile();
+    void updateScoreTable(char playerName[20]);
+
     WINDOW *getWin();
     int getScore();
 };
