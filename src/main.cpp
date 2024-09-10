@@ -12,6 +12,8 @@ int main()
 {
     initscr();
     noecho();
+    curs_set(0);
+    keypad(stdscr, TRUE);
 
     // le window principali del gioco
     WINDOW *playwin, *scorewin, *menuwin;
@@ -73,6 +75,8 @@ int main()
                 break;
             }
             score.updateLevel(level);
+            // chiedi nome
+            score.askName();
 
             // inizializzo il gioco
             wclear(menuwin);
@@ -108,6 +112,7 @@ int main()
             bool gameOver = false;
             bool CanSpawn = false;
             int lines = 0;
+
             while (ch != Quit && !gameOver)
             {
                 // clear lines
@@ -181,7 +186,7 @@ int main()
         // test
         char playerName[20];
         strcpy(playerName, "AAAAAAAAA");
-        score.updateScoreTable(playerName);
+        score.updateScoreTable();
         ch = getch();
     }
 

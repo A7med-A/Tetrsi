@@ -18,6 +18,7 @@ public:
     // riguardo il salvataggio e il file
     // array di punteggi
     scoreTable scoreTableArray[10];
+    char playerName[20];
 
 public:
     Score(WINDOW *scorewin = NULL);
@@ -30,7 +31,9 @@ public:
     void sortScoreTable();
     void readScoreFromFileAndSaveInScoreTable(const std::string &filename);
     void saveScoreInFile();
-    void updateScoreTable(char playerName[20]);
+    void updateScoreTable();
+    //
+    void askName();
 
     WINDOW *getWin();
     int getScore();

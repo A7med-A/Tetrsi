@@ -18,9 +18,11 @@ void Score::draw()
 {
     box(this->scorewin, 0, 0);
     wrefresh(this->scorewin);
-    mvwprintw(this->scorewin, 1, 1, "Score: %d", this->score);
-    mvwprintw(this->scorewin, 2, 1, "Level: %d", this->level);
-    mvwprintw(this->scorewin, 3, 1, "Lines: %d", this->lines);
+    mvwprintw(this->scorewin, 1, 1, "Name: %s", this->playerName);
+    mvwprintw(this->scorewin, 2, 1, "Score: %d", this->score);
+    mvwprintw(this->scorewin, 3, 1, "Level: %d", this->level);
+    mvwprintw(this->scorewin, 4, 1, "Lines: %d", this->lines);
+
     wrefresh(this->scorewin);
 }
 
@@ -98,7 +100,7 @@ void Score::saveScoreInFile()
     file.close();
 }
 
-void Score::updateScoreTable(char playerName[20])
+void Score::updateScoreTable()
 {
 
     bool added = false;
@@ -113,7 +115,7 @@ void Score::updateScoreTable(char playerName[20])
                 this->scoreTableArray[j] = this->scoreTableArray[j - 1];
             }
             this->scoreTableArray[i].score = this->score;
-            strcpy(this->scoreTableArray[i].name, playerName);
+            strcpy(this->scoreTableArray[i].name, this->playerName);
         }
         i++;
     }
@@ -121,6 +123,19 @@ void Score::updateScoreTable(char playerName[20])
     {
         this->saveScoreInFile();
     }
+}
+
+void Score::askName()
+{
+    echo();
+    WINDOW *inputwin = newwin(3, 40, 10, 10);
+    box(inputwin, 0, 0);
+    mvwprintw(inputwin, 1, 1, "Enter your name: ");
+    wrefresh(inputwin);
+    wgetnstr(inputwin, playerName, 20);
+    wrefresh(inputwin);
+    delwin(inputwin);
+    noecho();
 }
 
 WINDOW *Score::getWin()
