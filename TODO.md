@@ -31,4 +31,4 @@ TODO: rendere l'UI bello
 
 Fatto: risolvere il problema della rotazione
 
-TODO: lo score certe volte si blocca
+Grande problema i teteramini non scendono giù e rimangono nell'area in certi casi quando elimino alcune righe

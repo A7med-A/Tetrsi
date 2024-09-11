@@ -29,7 +29,7 @@ int main()
 
     // inizializzazione gioco
     playwin = newwin(Board_HEIGHT, Board_WIDTH, 10, 10);
-    WINDOW *test = newwin(Board_HEIGHT, Board_WIDTH, 10, 20);
+    // WINDOW *test = newwin(Board_HEIGHT, Board_WIDTH, 10, 20);
     scorewin = newwin(20, 20, 2, 60);
     menuwin = newwin(maxHeigth, maxWidth, 0, 0);
     refresh();
@@ -107,10 +107,10 @@ int main()
             score.readScoreFromFileAndSaveInScoreTable("scoreTable.txt"); // il file deve essere qui
 
             // test
-            WINDOW *testBorder = newwin(Board_HEIGHT + 2, Board_WIDTH + 2, test->_begy - 1, test->_begx - 1);
-            refresh();
-            box(testBorder, 0, 0);
-            wrefresh(testBorder);
+            // WINDOW *testBorder = newwin(Board_HEIGHT + 2, Board_WIDTH + 2, test->_begy - 1, test->_begx - 1);
+            // refresh();
+            // box(testBorder, 0, 0);
+            // wrefresh(testBorder);
 
             // inizializzo il gioco
             board.Border();
@@ -188,12 +188,12 @@ int main()
                     tetramino.moveDown(board);
                     wrefresh(playwin);
                 }
-                else if (ch == 'f')
-                {
-                    // test
-                    board.draw(test);
-                    wrefresh(test);
-                }
+                // else if (ch == 'f') // test
+                //{
+                //  test
+                //    board.draw(test);
+                //    wrefresh(test);
+                //}
                 else if (ch == Quit)
                 {
                     score.updateScoreTable();

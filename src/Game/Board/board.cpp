@@ -67,7 +67,7 @@ bool Board::checkCollision(int xAttuale, int yAttuale, int xVoluto, int yVoluto,
     {
         for (int j = 0; j < 4; j++)
         {
-            if (tetra.shape[i][j] == '#')
+            if (tetra.shape[i][j] != ' ')
             {
                 // Coordinate effettive sulla board
                 int boardX = xVoluto + j; //////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -99,7 +99,7 @@ bool Board::checkRotationCollision(int xAttuale, int yAttuale, Tetra tetra, Tetr
     {
         for (int j = 0; j < 4; j++)
         {
-            if (rotated.shape[i][j] == '#')
+            if (rotated.shape[i][j] != ' ')
             { // Supponendo che '#' indichi un blocco del tetramino
                 int boardX = xAttuale + j;
                 int boardY = yAttuale + i;
@@ -132,7 +132,7 @@ void Board::placeTetra(Tetra tetra, int x, int y)
     {
         for (int j = 0; j < 4; j++)
         {
-            if (tetra.shape[i][j] == '#')
+            if (tetra.shape[i][j] != ' ')
             {
                 mvwaddch(this->playwin, y + i, x + j, tetra.shape[i][j]);
             }
@@ -148,7 +148,7 @@ void Board::clearTetra(Tetra tetra, int x, int y)
     {
         for (int j = 0; j < 4; j++)
         {
-            if (tetra.shape[i][j] == '#')
+            if (tetra.shape[i][j] != ' ')
             {
                 mvwaddch(this->playwin, y + i, x + j, ' '); //////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
             }
