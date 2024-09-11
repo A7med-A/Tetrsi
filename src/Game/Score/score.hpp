@@ -13,6 +13,7 @@ public:
     // riguardo lo score
     int score;
     int level;
+    int totalLines;
     int lines;
     WINDOW *scorewin;
     // riguardo il salvataggio e il file
@@ -26,6 +27,8 @@ public:
     void draw();
     //
     void updateScore(int deletedLines);
+    void updateTotalLines(int deletedLines);
+    void updateLines(int deletedLines);
     //
     void sortScoreTable();
     void readScoreFromFileAndSaveInScoreTable(const std::string &filename);

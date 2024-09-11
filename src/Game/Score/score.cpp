@@ -6,6 +6,7 @@ Score::Score(WINDOW *scorewin)
     this->score = 0;
     this->level = 1;
     this->lines = 0;
+    this->totalLines = 0;
 }
 
 void Score::borderwin()
@@ -22,6 +23,7 @@ void Score::draw()
     mvwprintw(this->scorewin, 2, 1, "Score: %d", this->score);
     mvwprintw(this->scorewin, 3, 1, "Level: %d", this->level);
     mvwprintw(this->scorewin, 4, 1, "Lines: %d", this->lines);
+    mvwprintw(this->scorewin, 5, 1, "Total Lines: %d", this->totalLines);
     wrefresh(this->scorewin);
 }
 
@@ -43,6 +45,16 @@ void Score::updateScore(int deletedLines) // dopo deve aggiustare in base al liv
     {
         this->score += (60 * this->level);
     }
+}
+
+void Score::updateTotalLines(int deletedLines)
+{
+    this->totalLines += deletedLines;
+}
+
+void Score::updateLines(int deletedLines)
+{
+    this->lines = deletedLines;
 }
 
 void Score::sortScoreTable() // bubble sort
@@ -172,6 +184,7 @@ void Score::resetScore()
 {
     this->score = 0;
     this->lines = 0;
+    this->totalLines = 0;
     this->level = 1;
     wclear(this->scorewin);
     wrefresh(this->scorewin);
