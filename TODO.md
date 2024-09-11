@@ -6,14 +6,14 @@ Fatto: lo score deve essere in base al livello scelto
 
 Fatto: il livello cambia la velocità di gioco
 
-IMP TEST per ora ho due fineste una pe la playwin ed una per la Fixedwin dopo devo unirli insieme in un unica board
+Fatto: IMP TEST per ora ho due fineste una per la playwin ed una per la Fixedwin dopo devo unirli insieme in un unica board
+problema risolto con la funzione updateWinFromBorad
 
 Già corretto::IMP lo score non da il punteggio voluto quando hai più di una linea eliminatea(da sistemare)
 
 fare la classe game per gestire tutta la parte del main, stato di gioco, ciclo del gioco ecc
 
-Fatto: salvare lo score e mettere il top score in un file
-e renderlo accessibile dal menu principale
+Fatto: salvare lo score e mettere il top score in un file e renderlo accessibile dal menu principale
 
 Fatto: fare scegliere al giocatore un nome per il salvataggio
 
@@ -30,3 +30,5 @@ Fatto: se il giocatore quitta o il gioco arriva a gameover lo score viene salvat
 TODO: rendere l'UI bello
 
 Fatto: risolvere il problema della rotazione
+
+TODO: lo score certe volte si blocca

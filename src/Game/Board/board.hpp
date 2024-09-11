@@ -17,6 +17,8 @@ public:
 
     void updateFixedBoardFromWin();
 
+    void updateWinFromFixedBoard(); // risolve il problema di avere solo una window senza la test window
+
     void Border();
 
     bool checkCollision(int xAttuale, int yAttuale, int xVoluto, int yVoluto, Tetra tetra);

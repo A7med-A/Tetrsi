@@ -105,11 +105,6 @@ int main()
             score.draw();
             wrefresh(scorewin);
             score.readScoreFromFileAndSaveInScoreTable("scoreTable.txt"); // il file deve essere qui
-            // test
-            // for (int i = 0; i < 10; i++)
-            //{
-            //    std::cout << score.scoreTableArray[i].name << " " << score.scoreTableArray[i].score << std::endl;
-            //}
 
             // test
             WINDOW *testBorder = newwin(Board_HEIGHT + 2, Board_WIDTH + 2, test->_begy - 1, test->_begx - 1);
@@ -135,7 +130,13 @@ int main()
                 lines = board.clearLines();
                 if (lines > 0)
                 {
-                    std::cout << "lines: " << lines << std::endl;
+                    board.updateWinFromFixedBoard(); // funziona correttamente
+                    board.draw(playwin);
+
+                    // board.draw(test);
+                    // wrefresh(test);
+
+                    // std::cout << "lines: " << lines << std::endl;
                     // update score
                     score.updateScore(lines);
                     score.draw();
@@ -143,6 +144,7 @@ int main()
                 }
                 if (ch == ERR)
                 {
+
                     //  Game over
                     gameOver = board.checkGameOver();
                     if (gameOver)
@@ -153,7 +155,7 @@ int main()
                     }
                     if (CanSpawn)
                     {
-                        board.updateFixedBoardFromWin();
+                        board.updateFixedBoardFromWin(); // devo aggiornare anche la playwin per fare match con la board
                         tetramino.spawnTetramino(board);
                         CanSpawn = false;
                         wrefresh(playwin);

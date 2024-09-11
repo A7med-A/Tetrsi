@@ -38,6 +38,19 @@ void Board::updateFixedBoardFromWin() // è chiamata quando il tetramino tocca i
             this->FixedBoard[Board_HEIGHT - 1 - i][j] = mvwinch(this->playwin, i, j);
         }
     }
+    draw(this->playwin);
+}
+
+void Board::updateWinFromFixedBoard()
+{
+    for (int i = 0; i < Board_HEIGHT; i++)
+    {
+        for (int j = 0; j < Board_WIDTH; j++)
+        {
+            mvwaddch(this->playwin, i, j, this->FixedBoard[Board_HEIGHT - 1 - i][j]);
+        }
+    }
+    wrefresh(this->playwin);
 }
 
 void Board::Border()

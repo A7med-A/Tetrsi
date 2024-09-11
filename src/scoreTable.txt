@@ -1,10 +1,10 @@
 1560 io
 840 terzo
+690 hh
+450 rr
+320 bella
 280 ahmed
+270 ttt
+210 f
 195 ad
-120 ad
-30 bella
-0 none
-0 none
-0 none
-0 none
+180 ioooo
