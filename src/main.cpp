@@ -46,15 +46,16 @@ int main()
 
     MenuState currentState = MAIN_MENU;
     // ciclo principale
-    int ch = getch();
+    // int ch = getch();
 
     while (true)
     {
         switch (currentState)
         {
         case MAIN_MENU:
+        {
             menu.DisplayMainMenu();
-            ch = getch();
+            int ch = getch();
             if (ch == 's')
             {
                 currentState = GAME;
@@ -68,15 +69,17 @@ int main()
                 currentState = QUIT;
             }
             break;
+        }
         case SCORE_TABLE_MENU:
+        {
             menu.DisplayScoreTableMenu("scoreTable.txt");
-            ch = getch();
+            int ch = getch();
             if (ch == 'b')
             {
                 currentState = MAIN_MENU;
             }
             break;
-
+        }
         case GAME:
         {
             // reset board and score
