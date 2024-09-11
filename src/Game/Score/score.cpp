@@ -168,6 +168,15 @@ void Score::askName()
     noecho();
 }
 
+void Score::resetScore()
+{
+    this->score = 0;
+    this->lines = 0;
+    this->level = 1;
+    wclear(this->scorewin);
+    wrefresh(this->scorewin);
+}
+
 WINDOW *Score::getWin()
 {
     return this->scorewin;

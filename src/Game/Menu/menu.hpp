@@ -1,4 +1,6 @@
 #pragma once
+#include <fstream>
+#include <string>
 #include <ncurses.h>
 #include "../constants.hpp"
 
@@ -10,4 +12,6 @@ private:
 public:
     Menu(WINDOW *menuwin = NULL);
     void DisplayMainMenu();
+
+    void DisplayScoreTableMenu(const std::string &filename);
 };

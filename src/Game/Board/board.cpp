@@ -145,6 +145,19 @@ void Board::clearTetra(Tetra tetra, int x, int y)
     // updateBoardFromWin();
 }
 
+void Board::resetBoardAndWin()
+{
+    for (int i = 0; i < Board_HEIGHT; i++)
+    {
+        for (int j = 0; j < Board_WIDTH; j++)
+        {
+            this->FixedBoard[i][j] = ' ';
+        }
+    }
+    wclear(this->playwin);
+    wrefresh(this->playwin);
+}
+
 WINDOW *Board::getWin()
 {
     return this->playwin;

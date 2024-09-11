@@ -78,6 +78,10 @@ void Tetramino::rotate(Board board)
     {
         numRotatedTetramino = 0;
     }
+    else if (this->RandomTetramino == 2)
+    {
+        numRotatedTetramino = 2;
+    }
 
     rotatedTetramino = Tetramini[numRotatedTetramino];
 

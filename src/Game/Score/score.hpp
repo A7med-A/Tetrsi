@@ -36,6 +36,8 @@ public:
     int timeOutBasedOnLevel();
     void askName();
 
+    void resetScore();
+
     WINDOW *getWin();
     int getScore();
 };

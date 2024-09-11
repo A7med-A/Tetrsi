@@ -27,6 +27,8 @@ public:
 
     void clearTetra(Tetra tetra, int x, int y);
 
+    void resetBoardAndWin();
+
     WINDOW *getWin();
 
     bool checkGameOver();
