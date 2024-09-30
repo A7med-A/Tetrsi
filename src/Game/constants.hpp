@@ -1,5 +1,6 @@
 #pragma once
 #include <ncurses.h>
+#include <string>
 #define Board_WIDTH 5
 #define Board_HEIGHT 30
 
@@ -14,6 +15,13 @@
 #define Time_Out 200
 // nel main andò a inizializzare tutte le window che mi servono
 
+// struttura per salvare e ordinare i punteggi
+struct scoreTable
+{
+  char name[20];
+  int score;
+};
+
 // struttura dei tetramini
 struct Tetra
 {
@@ -27,22 +35,22 @@ const Tetra Tetramini[Tetra_NUM] = {
       {' ', ' ', ' ', ' '},
       {'#', '#', '#', '#'}}},
 
-    {{{' ', '#', ' ', ' '},
-      {' ', '#', ' ', ' '},
-      {' ', '#', ' ', ' '},
-      {' ', '#', ' ', ' '}}},
+    {{{' ', 'A', ' ', ' '},
+      {' ', 'A', ' ', ' '},
+      {' ', 'A', ' ', ' '},
+      {' ', 'A', ' ', ' '}}},
 
     {{{' ', ' ', ' ', ' '},
       {' ', ' ', ' ', ' '},
-      {' ', '#', '#', ' '},
-      {' ', '#', '#', ' '}}}};
+      {' ', 'O', 'O', ' '},
+      {' ', 'O', 'O', ' '}}}};
 
 const Tetra TetraminiRuotati[2] = {
     {
-        {{' ', '#', ' ', ' '},
-         {' ', '#', ' ', ' '},
-         {' ', '#', ' ', ' '},
-         {' ', '#', ' ', ' '}},
+        {{' ', 'A', ' ', ' '},
+         {' ', 'A', ' ', ' '},
+         {' ', 'A', ' ', ' '},
+         {' ', 'A', ' ', ' '}},
 
     },
     {
@@ -52,20 +60,10 @@ const Tetra TetraminiRuotati[2] = {
          {'#', '#', '#', '#'}},
     }};
 
-enum GameState
+enum MenuState
 {
-  MENU_MAIN,
-  MENU_PAUSE,
-  MENU_GAME,
-  GAME_OVER,
-  GAME_RUNNING,
-  GAME_PAUSE
-};
-
-enum MenuOption
-{
-  OPTION_START,
-  OPTION_OPTIONS,
-  OPTION_EXIT,
-  OPTION_BACK
+  MAIN_MENU,
+  SCORE_TABLE_MENU,
+  GAME,
+  QUIT
 };

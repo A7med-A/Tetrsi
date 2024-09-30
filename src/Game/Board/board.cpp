@@ -38,6 +38,19 @@ void Board::updateFixedBoardFromWin() // è chiamata quando il tetramino tocca i
             this->FixedBoard[Board_HEIGHT - 1 - i][j] = mvwinch(this->playwin, i, j);
         }
     }
+    draw(this->playwin);
+}
+
+void Board::updateWinFromFixedBoard()
+{
+    for (int i = 0; i < Board_HEIGHT; i++)
+    {
+        for (int j = 0; j < Board_WIDTH; j++)
+        {
+            mvwaddch(this->playwin, i, j, this->FixedBoard[Board_HEIGHT - 1 - i][j]);
+        }
+    }
+    wrefresh(this->playwin);
 }
 
 void Board::Border()
@@ -54,7 +67,7 @@ bool Board::checkCollision(int xAttuale, int yAttuale, int xVoluto, int yVoluto,
     {
         for (int j = 0; j < 4; j++)
         {
-            if (tetra.shape[i][j] == '#')
+            if (tetra.shape[i][j] != ' ')
             {
                 // Coordinate effettive sulla board
                 int boardX = xVoluto + j; //////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -86,7 +99,7 @@ bool Board::checkRotationCollision(int xAttuale, int yAttuale, Tetra tetra, Tetr
     {
         for (int j = 0; j < 4; j++)
         {
-            if (rotated.shape[i][j] == '#')
+            if (rotated.shape[i][j] != ' ')
             { // Supponendo che '#' indichi un blocco del tetramino
                 int boardX = xAttuale + j;
                 int boardY = yAttuale + i;
@@ -119,7 +132,7 @@ void Board::placeTetra(Tetra tetra, int x, int y)
     {
         for (int j = 0; j < 4; j++)
         {
-            if (tetra.shape[i][j] == '#')
+            if (tetra.shape[i][j] != ' ')
             {
                 mvwaddch(this->playwin, y + i, x + j, tetra.shape[i][j]);
             }
@@ -135,7 +148,7 @@ void Board::clearTetra(Tetra tetra, int x, int y)
     {
         for (int j = 0; j < 4; j++)
         {
-            if (tetra.shape[i][j] == '#')
+            if (tetra.shape[i][j] != ' ')
             {
                 mvwaddch(this->playwin, y + i, x + j, ' '); //////////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
             }
@@ -143,6 +156,19 @@ void Board::clearTetra(Tetra tetra, int x, int y)
     }
     wrefresh(this->playwin);
     // updateBoardFromWin();
+}
+
+void Board::resetBoardAndWin()
+{
+    for (int i = 0; i < Board_HEIGHT; i++)
+    {
+        for (int j = 0; j < Board_WIDTH; j++)
+        {
+            this->FixedBoard[i][j] = ' ';
+        }
+    }
+    wclear(this->playwin);
+    wrefresh(this->playwin);
 }
 
 WINDOW *Board::getWin()
