@@ -1,21 +1,32 @@
 #pragma once
 #include <ncurses.h>
+
 #include <iostream>
 
 #include "Game/Board/board.hpp"
-#include "Game/Tetramino/tetramino.hpp"
-#include "Game/constants.hpp"
 #include "Game/Menu/menu.hpp"
 #include "Game/Score/score.hpp"
+#include "Game/Tetramino/tetramino.hpp"
+#include "Game/constants.hpp"
 
-class Game
-{
-protected:
-    WINDOW *playwin, *scorewin, *menuwin;
-    Board board;
-    Tetramino tetramino;
+// è la classe che gestisce tutti i piccoli aspetti del gioco
+// dalla inizializzazione delle finestre alla gestione del gioco
+class Game {
+ public:
+  Game();
+  ~Game();
+  void run();
 
-public:
-    Game();
-    void start();
+ protected:
+  WINDOW *playwin, *scorewin, *menuwin;
+  Board *board;
+  Score *score;
+  Menu *menu;
+  MenuState currentState;
+
+  void init();
+  void mainMenu();
+  void scoreTableMenu();
+  void gameLoop();
+  void cleanUp();
 };
