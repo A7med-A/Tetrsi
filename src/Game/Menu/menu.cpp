@@ -1,45 +1,44 @@
 #include "menu.hpp"
 
-Menu::Menu(WINDOW *menuwin)
-{
-    this->menuwin = menuwin;
+Menu::Menu(WINDOW *menuwin) { this->menuwin = menuwin; }
+
+void Menu::DisplayMainMenu() {
+  wclear(this->menuwin);
+  box(this->menuwin, 0, 0);
+  int width = getmaxx(this->menuwin);
+  int hight = getmaxy(this->menuwin);
+  mvwprintw(this->menuwin, (hight / 2) - 7, (width / 2) - 5,  "TETRIS");
+  mvwprintw(this->menuwin, (hight / 2) - 3, (width / 2) - 13, "Press 's' to start");
+  mvwprintw(this->menuwin, (hight / 2) - 1, (width / 2) - 13, "Press 't' for the score table");
+  mvwprintw(this->menuwin, (hight / 2) + 1, (width / 2) - 13, "Press 'q' to quit");
+  wrefresh(this->menuwin);
+
 }
 
-void Menu::DisplayMainMenu()
-{
-    wclear(this->menuwin);
-    box(this->menuwin, 0, 0);
-    mvwprintw(this->menuwin, 1, 1, "TETRIS");
-    mvwprintw(this->menuwin, 2, 1, "Press 's' to start");
-    mvwprintw(this->menuwin, 3, 1, "Press 't' to see the score table");
-    mvwprintw(this->menuwin, 4, 1, "Press 'q' to quit");
+void Menu::DisplayScoreTableMenu(const std::string &filename) {
+  wclear(this->menuwin);
+  // box(this->menuwin, 0, 0);
+
+  std::ifstream file(filename);
+  if (!file.is_open()) {
+    mvwprintw(this->menuwin, 1, 1, "Error opening file");
     wrefresh(this->menuwin);
-}
+    return;
+  }
 
-void Menu::DisplayScoreTableMenu(const std::string &filename)
-{
-    wclear(this->menuwin);
-    // box(this->menuwin, 0, 0);
+  box(this->menuwin, 0, 0);
 
-    std::ifstream file(filename);
-    if (!file.is_open())
-    {
-        mvwprintw(this->menuwin, 1, 1, "Error opening file");
-        wrefresh(this->menuwin);
-        return;
-    }
+  int width = getmaxx(this->menuwin);
+  int hight = getmaxy(this->menuwin);
 
-    box(this->menuwin, 0, 0);
-
-    std::string line;
-    mvwprintw(this->menuwin, 1, 1, "Score Table");
-    mvwprintw(this->menuwin, 2, 1, "click 'b' to go back");
-    int row = 1;
-    while (std::getline(file, line))
-    {
-        mvwprintw(this->menuwin, row + 2, 2, line.c_str());
-        row++;
-    }
-    file.close();
-    wrefresh(this->menuwin);
+  std::string line;
+  mvwprintw(this->menuwin, 3, (width / 2) - 5, "SCORE TABLE");
+  mvwprintw(this->menuwin, (hight - 13), (width / 2) - 9, "click 'b' to go back");
+  int row = 1;
+  while (std::getline(file, line)) {
+    mvwprintw(this->menuwin, row + 7, (width / 2) - 4, line.c_str());
+    row += 3;
+  }
+  file.close();
+  wrefresh(this->menuwin);
 }

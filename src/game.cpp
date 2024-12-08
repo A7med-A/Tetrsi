@@ -15,8 +15,8 @@ void Game::init() {
   int maxHeigth, maxWidth;
   getmaxyx(stdscr, maxHeigth, maxWidth);
 
-  playwin = newwin(Board_HEIGHT, Board_WIDTH, 10, 10);
-  scorewin = newwin(20, 20, 2, 60);
+  playwin = newwin(Board_HEIGHT, Board_WIDTH, 10, 80);
+  scorewin = newwin(10, 20, 9, 80 + Board_WIDTH + 1);
   menuwin = newwin(maxHeigth, maxWidth, 0, 0);
   refresh();
 

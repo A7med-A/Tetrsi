@@ -1,7 +1,7 @@
 #pragma once
 #include <ncurses.h>
 #include <string>
-#define Board_WIDTH 5
+#define Board_WIDTH 10
 #define Board_HEIGHT 30
 
 #define Control_LEFT 'a'
