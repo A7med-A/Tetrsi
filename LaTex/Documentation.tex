@@ -1,0 +1,186 @@
+\documentclass{article}
+\usepackage{graphicx}
+
+\title{Tetris Game Documentation}
+\author{Ahmed Ayad}
+\date{\today}
+
+
+\begin{document}
+\maketitle
+
+\section{Introduzione}
+Questo documento descrive il gioco Tetris. Il gioco è stato sviluppato in C++ utilizzando la libreria grafica ncurses.
+Il gioco è stato sviluppato come progetto finale per il corso di Programmazione.
+
+\section{Descrizione del gioco}
+Tetris è un videogioco rompicapo ideato e progettato da Aleksej Pažitnov nel 1984.
+Il gioco consiste nel posizionare i pezzi cadenti in modo da creare delle linee orizzontali complete.
+Quando una linea viene completata, essa scompare e tutti i pezzi sopra di essa scendono di una posizione.
+Il gioco termina quando i pezzi raggiungono il limite superiore consentito per posizionare pezzi.
+
+\section{Comandi di gioco}
+I comandi di gioco sono i seguenti:
+\begin{itemize}
+\item a: muove il pezzo a sinistra.
+\item d: muove il pezzo a destra.
+\item s: fa scendere il pezzo più velocemente.
+\item r: ruota il pezzo.
+\item q: termina il gioco.
+\end{itemize}
+
+\section{Finestre di gioco}
+Il gioco è composto da tre finestre:
+\begin{itemize}
+\item \textbf{Finestra del menù principale}: contiene tre scelte (Nuova partita, Tabella dei punteggi, Esci).
+\item \textbf{Finestra di gioco}:contine il campo di gioco con i tetramini e continene una piccola finestra con il punteggio, il livello e il nome del giocatore.
+\item \textbf{Finestra dei punteggi}:contiene i punteggi dei miglior 10 giocatori ordinati in modo decrescente.
+\end{itemize}   
+
+\section{Regole di gioco}
+Il gioco inizia con un tetramino casuale che scende dal lato superiore della finestra di gioco.
+Il giocatore può muovere il tetramino a sinistra o a destra, ruotarlo o farlo scendere più velocemente, senza però farlo uscire dai limiti della finestra di gioco.
+Il tetramino si ferma quando raggiunge il fondo della finestra di gioco o quando incontra un altro tetramino.
+Quando un tetramino si ferma, il gioco genera un nuovo tetramino casuale.
+Il gioco termina quando un tetramino si ferma e non c'è più spazio per posizionare un nuovo tetramino, o quando il giocatore preme il tasto 'q'.
+
+\section{Game Features}
+Il gioco ha le seguenti caratteristiche:
+\begin{itemize}
+\item \textbf{Nome del giocatore}: il giocatore può inserire il proprio nome all'inizio del gioco.
+\item \textbf{Livello}: il giocatore può sceglere uno tra 5 livelli digitando un numero tra 1 e 5.
+\item \textbf{Difficoltà}: il gioco in base al livello scelto aumenta la velocità di caduta dei tetramini.
+\item \textbf{Punteggio}: il punteggio aumenta in base a due fattori.
+\begin{itemize}
+    \item Numero di linee completate orizzontalmente con massimo 4 linee.
+    \item Livello di difficoltà, più alto è il livello più alto è il punteggio.
+\end{itemize}
+\item \textbf{Tabella dei punteggi}: il gioco tiene traccia dei migliori 10 punteggi e li salva su un file, in modo che siano disponibili anche dopo la chiusura del gioco.
+\item \textbf{Dimensione griglia di gioco}: la griglia di gioco è personalizzabile in mod molto semplice.
+\item \textbf{Grafica Dei tetramini}: i tetramini sono rappresentati con dei caratteri ASCII e sono facilmente personalizzabile dal codice senza dover modificare altre funzioni del gioco.
+\item \textbf{Grafica di gioco}: la grafica del gioco è stata realizzata utilizzando la libreria ncurses.
+\item \textbf{Finestra punteggio}: la finestra punteggio contiene il punteggio, il livello, il nome del giocatore, numero di linee completate e il loro punteggio.
+\item \textbf{Rotazione dei tetramini}: i tetramini possono essere ruotati utlizzando il tasto 'r'.
+\end{itemize}
+
+\section{Game Screenshots}
+
+\section{Struttura del codice}
+\begin{verbatim}
+|-src/ 
+    |-main.cpp
+    |-game.cpp
+    |-game.hpp
+    |-scoreTable.txt 
+    |-Gioco.exe 
+    |-Makefile
+    |-Game/
+        |-constants.hpp
+        |-Board/
+            |-board.cpp
+            |-board.hpp
+        |-Menu/
+            |-menu.cpp
+            |-menu.hpp  
+        |-Score/
+            |-score.cpp
+            |-score.hpp
+        |-Tetramino/
+            |-tetramino.cpp
+            |-tetramino.hpp
+\end{verbatim}
+
+\section{Classi e funzioni}
+In questa sezione verranno descritte le classi e le funzioni principali del gioco:
+
+\subsection{Constant file}
+Il file constants.hpp contiene le costanti utilizzate nel gioco come:
+\begin{itemize}
+\item \textbf{Board-WIDTH}: larghezza della griglia di gioco.
+\item \textbf{Board-HEIGHT}: altezza della griglia di gioco.
+\item \textbf{Comandi di gioco}: comandi di gioco come 'a', 'd', 's', 'r', 'q'.
+\item \textbf{Numero di tetramini}: numero di tetramini disponibili.
+\item \textbf{Struttura dello score}: struttura che contiene il nome del giocatore e il punteggio.
+\item \textbf{Struttura del tetramino}: struttura che contiene forma dei tetramini e come sono se ruotati.
+\item  \textbf{Enum dei menu}: enum che contiene le scelte del menù principale. 
+\end{itemize}
+
+\subsection{Board class}
+la classe Board contiene i metodi per gestire la griglia di gioco come:
+\begin{itemize}
+    \item \textbf{array FixedBoard}: array bidimensionale che rappresenta la tavola di gioco contentere solo i tetramini fissi ovvero i pezzi che sono stati posizionati e non possono più essere spostati.
+    \item \textbf{draw()}:funzione che disegna la griglia di gioco scorrendo attraverso l'array FixedBoard.
+    \item \textbf{updateFixedBoardFromWin()}:funzione che aggiorna l'array FixedBoard con i tetramini presenti nella finestra di gioco, è chiamata quando il tetramino tocca il fondo.
+    \item \textbf{updateWinFromFixedBoard()}:funzione che aggiorna la finestra di gioco con i tetramini presenti nell'array FixedBoard.
+    \item \textbf{checkCollision()}:funzione che controlla se il tetramino in movimento collide con i bordi della finestra o con altri tetramini.
+    \item \textbf{checkRotationCollision()}:funzione che controlla se il tetramino in movimento collide con i bordi della finestra o con altri tetramini dopo la rotazione, rimuovendo il temporaneamente il tetramino e riposizione un tetramino di prova ruotato e contralla se c'è collisione o meno.
+    \item \textbf{placeTetra()}:funzione che posiziona il tetramino nella griglia di gioco.
+    \item \textbf{clearTetra()}:funzione che cancella il tetramino dalla griglia di gioco.(è una funzione di supporto)
+    \item \textbf{resetBoardAndWin()}:funzione che resetta la griglia di gioco e la finestra di gioco.
+    \item \textbf{getWin()}:funzione che ritorna il puntatore alla finestra di gioco.
+    \item \textbf{checkGameOver()}:funzione che controlla se il gioco è finito.
+    \item \textbf{ilLineComplete()}:funzione che controlla se una linea è completa.
+    \item \textbf{removeLine()}:funzione che rimuove una linea completa dalla griglia di gioco e sposta i tetramini sopra di essa e aggiorna la FixedBoard.
+    \item \textbf{clearLines()}:rimuove tutte le linee complete dalla tavola e ristituisce il numero di linee rimosse (servea anche per lo score).
+\end{itemize}
+
+\subsection{Menu class}
+la classe Menu contiene i metodi per gestire la visualizzazione del menu principale e della tabella dei punteggi del gioco:
+\begin{itemize}
+    \item \textbf{DisplayMainMenu()}:funzione responsabile della visualizzazione menu principale.
+    \item \textbf{DisplayScoreTableMenu()}: visualizzazione della tabella deo punteggi leggendo i dati da un file.
+\end{itemize}
+
+\subsection{Score class}
+la classe Score contiene i metodi per gestire il punteggio, il livello e la finestra score:
+
+\begin{itemize}
+    \item \textbf{draw()}:funzione che disegna la finestra score con il punteggio, il livello, il nome del giocatore e il numero di linee completate.
+    \item \textbf{updateScore()}:funzione che aggiorna il punteggio in base al numero di linee completate e al livello di difficoltà, aggiungendo il punteggio al punteggio totale.
+    \item \textbf{updateTotalLines()}:funzione che aggiorna il numero di linee eliminate totalmente.
+    \item \textbf{updateLines()}:funzione che aggiorna il numero di linee eliminate con il valore passato come parametro.
+    \item \textbf{sortScoreTable()}:funzione che ordina la tabella dei punteggi in modo decrescente.
+    \item \textbf{readScoreFromFileAndSaveInScoreTable()}:funzione che legge i punteggi da un file e li salva in un array.
+    \item \textbf{saveScoreInFile()}:funzione che salva la tabella dei punteggi in un file in modo ordinato.
+    \item \textbf{updateScoreTable()}:funzione che aggiorna la tabella dei punteggi con il punteggio corrente del giocatore.
+    \item \textbf{askLevel()}:funzione che chiede al giocatore di scegliere un livello tra 1 e 5.
+    \item \textbf{timeOutBasedOnLevel()}:funzione che ritorna il timeout in base al livello scelto.
+    \item \textbf{askName()}:funzione che chiede al giocatore di inserire il proprio nome.
+    \item \textbf{resetScore()}:funzione che resetta il punteggio, il livello e il numero di linee completate.
+    \item \textbf{getScore()}:funzione che ritorna il punteggio.
+\end{itemize}
+
+
+\subsection{Tetramino class}
+
+la classe Tetramino contiene i metodi per gestire i tetramini:
+\begin{itemize}
+    \item \textbf{getX() e getY()}:funzioni che ritornano la coordinata x e y del tetramino.
+    \item \textbf{spawnTetramino()}:funzione che genera un nuovo tetramino in maniera casuale
+    \item \textbf{checkBottomCollision()}:funzione che controlla se il tetramino collide con il fondo o con un altro tetramino.
+    \item \textbf{getTetramino()}:funzione che ritorna il tetramino corrente.
+    \item \textbf{rotate()}:funzione che ruota il tetramino.
+    \item \textbf{moveLeft() e moveRight()}:funzioni che muovono il tetramino a sinistra e a destra.
+    \item \textbf{moveDown()}:funzione che fa scendere il tetramino
+\end{itemize}
+
+\subsection{Game class}
+la classe Game contiene i metodi per gestire l'intero gioco:
+\begin{itemize}
+    \item \textbf{init()}:funzione che inizializza il gioco.
+    \item \textbf{run()}:funzione che gestisce il loop principale del gioco (unica funzione publica).
+    \item \textbf{mainMenu()}:funzione che gestisce il menu principale.
+    \item \textbf{scoreTableMenu()}:funzione che gestisce la tabella dei punteggi.
+    \item \textbf{gameLoop()}:funzione che gestisce il gioco tetris.
+    \item \textbf{cleanUp()}:funzione che pulisce la memoria allocata.
+\end{itemize}
+
+\end{document}
+
+
+
+
+
+
+
+
