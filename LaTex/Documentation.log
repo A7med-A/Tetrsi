@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.12.25)  25 DEC 2024 19:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.12.25)  28 DEC 2024 16:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -90,38 +90,54 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  [1
 
 {C:/Users/ahmed/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2] [3]
-Overfull \hbox (9.3885pt too wide) in paragraph at lines 113--114
+Overfull \hbox (9.3885pt too wide) in paragraph at lines 110--111
 []\OT1/cmr/bx/n/10 updateFixedBoardFromWin()\OT1/cmr/m/n/10 :funzione che ag-giorna l'array Fixed-Board
  []
 
 
-Overfull \hbox (5.22177pt too wide) in paragraph at lines 114--115
+Overfull \hbox (5.22177pt too wide) in paragraph at lines 111--112
 []\OT1/cmr/bx/n/10 updateWinFromFixedBoard()\OT1/cmr/m/n/10 :funzione che ag-giorna la fines-tra di gioco
  []
 
 
-Overfull \hbox (0.50801pt too wide) in paragraph at lines 116--117
+Overfull \hbox (0.50801pt too wide) in paragraph at lines 113--114
 []\OT1/cmr/bx/n/10 checkRotationCollision()\OT1/cmr/m/n/10 :funzione che con-trolla se il tetramino in movi-
  []
 
-[4] [5] [6] (Documentation.aux)
+[4] [5]
+<Screen/Main Menu.png, id=24, 1178.90437pt x 727.21687pt>
+File: Screen/Main Menu.png Graphic file (type png)
+<use Screen/Main Menu.png>
+Package pdftex.def Info: Screen/Main Menu.png  used on input line 181.
+(pdftex.def)             Requested size: 276.00105pt x 170.2524pt.
+<Screen/Game .png, id=26, 1177.39874pt x 729.22438pt>
+File: Screen/Game .png Graphic file (type png)
+<use Screen/Game .png>
+Package pdftex.def Info: Screen/Game .png  used on input line 189.
+(pdftex.def)             Requested size: 276.00105pt x 170.93379pt.
+<Screen/Score Table.png, id=27, 1185.42876pt x 727.71875pt>
+File: Screen/Score Table.png Graphic file (type png)
+<use Screen/Score Table.png>
+Package pdftex.def Info: Screen/Score Table.png  used on input line 197.
+(pdftex.def)             Requested size: 276.00105pt x 169.42604pt.
+ [6] [7 <./Screen/Main Menu.png> <./Screen/Game .png>] [8 <./Screen/Score Table.png>] (Documentation.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 1311 strings out of 474486
- 21569 string characters out of 5753569
+ 1337 strings out of 474486
+ 22224 string characters out of 5753569
  1933542 words of memory out of 5000000
- 23630 multiletter control sequences out of 15000+600000
+ 23656 multiletter control sequences out of 15000+600000
  562827 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,6n,65p,411b,199s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,6n,65p,411b,230s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\ahmed\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Documentation.pdf (6 pages, 108242 bytes).
+Output written on Documentation.pdf (8 pages, 188643 bytes).
 PDF statistics:
- 56 PDF objects out of 1000 (max. 8388607)
+ 71 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

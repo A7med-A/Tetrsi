@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1735153096.49233 "c:/Users/ahmed/OneDrive/Desktop/Uni/Progetto-Programmazione/LaTex/Documentation.tex" "Documentation.pdf" "Documentation" 1735153097.69164 0
+["pdflatex"] 1735400008.41208 "c:/Users/ahmed/OneDrive/Desktop/Uni/Progetto-Programmazione/LaTex/Documentation.tex" "Documentation.pdf" "Documentation" 1735400011.19183 0
   "C:/Program Files/MiKTeX/fonts/tfm/jknappen/ec/tcrm1000.tfm" 993062508 1436 c7f957a372ef2fbe93c0982f96625e12 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/cm/cmbx10.tfm" 1136765053 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/cm/cmbx12.tfm" 1136765053 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -35,9 +35,12 @@
   "C:/Users/ahmed/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1735144027 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/ahmed/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1735145752 11548 ea7a990a3b6248bda76893cd67d669b8 ""
   "C:/Users/ahmed/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1735144886 24215232 50da34dd57aa1f5973c2caa7db3da0aa ""
-  "Documentation.aux" 1735153097 1599 b4fa8b12cca2aed27c9a85ffeafe19ee "pdflatex"
-  "Documentation.tex" 1735153095 10597 dbd2649dab3c25b43c30742287bf1043 ""
-  "c:/Users/ahmed/OneDrive/Desktop/Uni/Progetto-Programmazione/LaTex/Documentation.tex" 1735153095 10597 dbd2649dab3c25b43c30742287bf1043 ""
+  "Documentation.aux" 1735400010 2060 3e2d2a3603323f40ad2ad2b353f1c112 "pdflatex"
+  "Documentation.tex" 1735400006 11069 1542ec0307fc1b3d3418f5e3291fafae ""
+  "Screen/Game .png" 1735399713 27377 759e8f077497d963f167f3f6a9e11f4a ""
+  "Screen/Main Menu.png" 1735399472 25616 c7028840d1e5814f5252ea793cde5330 ""
+  "Screen/Score Table.png" 1735399829 39638 86705a18357651256f4b8f2f221bb39c ""
+  "c:/Users/ahmed/OneDrive/Desktop/Uni/Progetto-Programmazione/LaTex/Documentation.tex" 1735400006 11069 1542ec0307fc1b3d3418f5e3291fafae ""
   (generated)
   "Documentation.aux"
   "Documentation.log"

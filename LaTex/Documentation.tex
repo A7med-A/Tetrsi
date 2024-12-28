@@ -56,15 +56,12 @@ Il gioco ha le seguenti caratteristiche:
     \item Livello di difficoltà, più alto è il livello più alto è il punteggio.
 \end{itemize}
 \item \textbf{Tabella dei punteggi}: il gioco tiene traccia dei migliori 10 punteggi e li salva su un file, in modo che siano disponibili anche dopo la chiusura del gioco.
-\item \textbf{Dimensione griglia di gioco}: la griglia di gioco è personalizzabile in mod molto semplice.
+\item \textbf{Dimensione griglia di gioco}: la griglia di gioco è personalizzabile in modo molto semplice.
 \item \textbf{Grafica Dei tetramini}: i tetramini sono rappresentati con dei caratteri ASCII e sono facilmente personalizzabile dal codice senza dover modificare altre funzioni del gioco.
 \item \textbf{Grafica di gioco}: la grafica del gioco è stata realizzata utilizzando la libreria ncurses.
 \item \textbf{Finestra punteggio}: la finestra punteggio contiene il punteggio, il livello, il nome del giocatore, numero di linee completate e il loro punteggio.
 \item \textbf{Rotazione dei tetramini}: i tetramini possono essere ruotati utlizzando il tasto 'r'.
 \end{itemize}
-
-\section{Game Screenshots}
-
 \section{Struttura del codice}
 \begin{verbatim}
 |-src/ 
@@ -174,6 +171,33 @@ la classe Game contiene i metodi per gestire l'intero gioco:
     \item \textbf{gameLoop()}:funzione che gestisce il gioco tetris.
     \item \textbf{cleanUp()}:funzione che pulisce la memoria allocata.
 \end{itemize}
+
+
+\section{Game Screenshots}
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\textwidth]{Screen/Main Menu.png}
+\caption{Main Menu}
+\label{fig:main_menu}
+\end{figure}
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\textwidth]{Screen/Game .png}
+\caption{Game screen}
+\label{fig:Game Screen}
+\end{figure}
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\textwidth]{Screen/Score Table.png}
+\caption{Score Table}
+\label{fig:Score Table}
+\end{figure}
 
 \end{document}
 
